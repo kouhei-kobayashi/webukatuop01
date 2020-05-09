@@ -1,0 +1,631 @@
+// 変数を定義
+$font-color_default:#777;
+$site-width:980px;
+$font-size_s:12px;
+$font-size_m:14px;
+$font-size_default:16px;
+$font-size_l:18px;
+$font-size_xl:24px;
+$font-size_xxl:30px;
+$font-size_3l:38px;
+$font-family_corp: 'Amatic SC', cursive;
+
+//$breakpoint-sm: 400px !default;
+//$breakpoint-md: 768px !default;
+//$breakpoint-lg: 1000px !default;
+$space_s: 5px;
+$space_m: 10px;
+$space_l: 15px;
+$space_xl: 20px;
+$space_xxl: 30px;
+$space_3l: 40px;
+
+$breakpoints: (
+    'sm': 'screen and (max-width: 500px)',
+  'md': 'screen and (max-width: 768px)',
+  'lg': 'screen and (max-width: 1000px)',
+  'xl': 'screen and (max-width: 1200px)',
+ ) !default;
+
+// ==============================
+// mixin(関数)
+// ==============================
+h2{
+    font-family: $font-family_corp;
+}
+@mixin mq($breakpoint: sm){
+    @media #{map-get($breakpoints,$breakpoint)} {
+        @content;
+    }
+}
+
+html,body{
+    width: 100%;
+    line-height: 1.6;
+}
+
+a{
+    color: $font-color_default;
+    text-decoration: none;
+    transition: .4s;
+}
+a:hover{
+    transition: .4s;
+}
+img{
+    width: 100%;
+    vertical-align: bottom;
+    @include mq(){
+        width: 100%;
+    }
+}
+.container{
+    width: $site-width;
+    margin: 50px auto;
+    @include mq(){
+        width: 100%;
+        margin: 0 auto;
+
+    }
+    
+}
+
+// ==================================
+// header
+// ==================================
+
+// ヘッダー全体のレイアウト
+.header{
+   // box-sizing: border-box;
+    width: 100%;
+  
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    color: $font-color_default;
+    background: wheat;
+    z-index: 1;
+    opacity: 60%;
+    // ヘッダータイトル
+    & .site-title{
+        color: $font-color_default;
+        font-size: $font-size_3l;
+        margin-top: 10px;
+        margin-left: 10px;
+        font-family:$font-family_corp ;
+        @include mq(){
+            width: 100%;
+        }
+
+    }
+
+    // スマホになった場合のヘッダーレイアウト
+    
+}
+     .menu-trigger{
+        display:none;
+        @include mq(){
+            display: inline-block;
+           
+        }
+        
+        transition:all .4s;
+        box-sizing:border-box;
+       position: relative;
+       top: 30px;
+       right: 25px;
+        width: 40px;
+        height: 32px;
+       z-index: 3;
+        span{
+            position: absolute;
+            
+            display: inline-block;
+            transition: all .4s;
+            box-sizing: border-box;
+            width: 100%;
+            height: 4px;
+            border-radius: 4px;
+            background-color: #333;
+            &:nth-of-type(1) {
+                top:0px;
+            }
+            &:nth-of-type(2){
+                top: 14px;
+            }
+            &:nth-of-type(3){
+                bottom: 0;
+            }
+        }
+        &.active span{
+            &:nth-of-type(1){
+                transform: translateY(13px) rotate(-45deg);
+            }
+            &:nth-of-type(2){
+                opacity: 0;
+            }
+            &:nth-of-type(3){
+                transform: translateY(-15px) rotate(45deg);
+            }
+        }
+    }
+
+
+// ナビゲーション
+.menu{
+   
+    
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content:space-between;
+    padding-right: 16px;
+    margin-top: 30px;
+   & .menu-item{
+      margin-right: 30px;
+       font-family: $font-family_corp ;
+       font-size: 30px;
+       transition: .4s;
+   }
+   & .menu-item:hover{
+       cursor: pointer;
+       transform: translateY(-5px);
+       transition: .4s;
+       & a{
+           color: #fa8072;
+       }
+   }
+
+   @include mq(){
+    display: block;
+    font-family: $font-family_corp;
+    .menu-item{
+        margin-right: initial;
+       font-size: 70px;
+    }
+    .menu-link{
+        -webkit-font-soothing:initial;
+        display: block;
+        padding: $space_l;
+        text-align: center;
+        
+    }
+   
+   
+}
+}
+//スマホ用ナビゲーションメニュー
+
+  
+    
+.nav-menu{
+    
+    @include mq(){
+        display: block;
+        position: absolute;
+        top: 0;
+        right: -100%;
+        background:rgba(150, 150, 150, 0.973);
+        width: 100%;
+        height: 100vh;
+       padding-top: 50px;
+        transition: .5s;
+        &.active{
+            transition: .5s;
+            transform: translateX(-100%);
+           z-index: 2!important;
+        }
+        & a{
+            color: white;
+        }
+    }
+}
+
+
+   
+
+// heroバナー
+.hero{
+    background-image: url('../img/saunamain.jpg');
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    height: 700px;
+    width: 100%;
+   
+    @include mq(){
+      
+       
+        width: 100%;
+        //background-size: cover;
+        
+
+    }
+}
+// ==============================
+// menu
+// ==============================
+
+
+
+
+
+
+// ==============================
+// スライダー
+// ==============================
+.slider-container{
+    width: 60%;
+    height: 400px;
+    overflow: hidden;
+    position: relative;
+    margin: 50px auto;
+    padding: 0;
+    border-radius: 10px;
+    & .prev{
+        position: absolute;
+        top: 50%;
+        left: 20px;
+        z-index:2 ;
+        color: white;
+        &:hover{
+            cursor: pointer;
+        }
+    }
+    & .next{
+        position: absolute;
+        top: 50%;
+        right: 20px;
+        z-index:2 ;
+        color: white;
+        &:hover{
+            cursor: pointer;
+        }
+        
+    }
+    & .slider-wrp{
+        overflow: hidden;
+        width: 980px;
+        position: relative;
+        & .slider__item{
+            float: left;
+            width: 980px;
+            & img{
+                width: 100%;
+                
+            }
+            
+            
+        }
+    }
+    @include mq() {
+        width: 100%;
+        height: 300px;
+        display: none;
+    }
+}
+
+
+
+
+
+
+
+
+
+// ==============================
+// news
+// ==============================
+.news-sub {
+    text-align: center;
+    font-size: 80px;
+   margin-bottom: 30px;
+   position: relative;
+   @include mq(){
+       width: 70%;
+       margin: 0 auto;
+       
+    
+   }
+   }
+.news-date{
+    float: left;
+    color:#ffbcbc;
+}
+.container-news{
+    background-color: #f5f5dc ;
+    font-size: 30px;
+    text-align: center;
+    height: 200px;
+    overflow: scroll;
+    width: 80%;
+    opacity: 60%;
+    margin: 0 auto;
+    @include mq(){
+        width: 100%;
+        height: 100px;
+        font-size: 12px;
+        border-radius: 5px;
+    }
+    
+}
+// ==============================
+// merit
+// ==============================
+.container-merit{
+    text-align: center;
+    & .merit{
+        font-size: 80px;
+    }
+    & .merit-panel{
+        position: relative;
+       
+    }
+
+    
+    & .panel{
+       // background: #fffff6;
+        & .img-panel{
+            overflow: hidden;
+        transition: .3s;
+        & img{
+            display: block;
+            transition-duration: .3s;
+        }
+    }
+    & .img-panel img:hover{
+        cursor: pointer;
+        transform:scale(1.2)  rotate(-5deg);
+        opacity: 0.6;
+        transition-duration: .3s;
+    }
+      
+        box-sizing: border-box;
+        border: 0.5px solid #f5f5f5;
+        padding-top: 20px;
+        padding-left:10px ;
+        padding-right: 10px ;
+        float: left;
+        width: 30%;
+       // min-height: 400px;
+        border-radius: 9px;
+     line-height: 2;
+        box-shadow: 4px 4px #fffafa;
+        margin: 100px auto;
+        margin-right: 40px;
+        text-align: center;
+        color: $font-color_default;
+        overflow: hidden;
+        & .merit-title{
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-size: 25px;
+            overflow: hidden;
+            
+           
+        }
+        & p{
+            min-height: 100px;
+        }
+        @include mq(){
+            clear: both;
+            width: 375px;
+            margin: 0 auto;
+
+
+        }
+    }
+    & .panel:last-child{
+margin-right:0 ;
+    }
+
+}
+
+// ==============================
+// plan
+// ==============================
+    .container-plan{
+       
+        text-align: center;
+        width: 100%;
+        display: flex;
+        justify-content:center;
+        position: relative;
+        
+        & .plan-title{
+            position: absolute;
+            left: 45%;
+            top: -30px;
+            font-family:  'Amatic SC', cursive;
+            font-weight: bold;
+            font-size: 80px;
+            @include mq(){
+                position: absolute;
+                left: 30%;
+
+            }
+           
+        }
+        & .plan-panel{
+            min-height: 200px;
+            width: 33%;
+            display: flex;
+            flex-direction: column;
+            background: #f8f8ff;
+            margin-right: 60px;
+            margin-top: 100px;
+            padding: 30px 30px;
+            box-sizing: border-box;
+            box-shadow: 4px 4px #fffafa ;
+            color: $font-color_default;
+            opacity: 0;
+           // display: flex;
+
+           // transform: translateX(50px);
+            &.move{
+            transition: 1s;
+            transform: translate(0,0);
+            opacity: 1;
+            }
+            & p{
+                opacity: 1;
+                transition: all 1s;
+                transform: translate(0,0);
+            }
+            & P .move{
+                opacity: 0;
+                transform: translate(-10px 0);
+            }
+            &.plan-panel:last-child{
+                margin-right:0px ;
+
+            }
+            & .panel-title{
+                font-weight: bold;
+                font-size: 16px;
+                @include mq(){
+                
+                }
+            }
+            & .plan-detail{
+               
+                width: 50%;
+               margin: 0 auto;
+               display: flex;
+               flex-direction: column;
+               margin-top: auto;
+               
+             & .btn{
+                
+                 padding: 3px;
+                background: #ffe4c4;
+                border-radius: 4px;
+                opacity: 0.8;
+             }
+             & .btn:hover{
+                transform: translateY(-4px);
+                transition: .5s;
+              
+                
+            }
+             
+             
+             
+            }
+            @include mq(){
+                width: 100%;
+              clear: both;
+               // display: block;
+               margin-top:70px ;
+            }
+        }
+        @include mq(){
+            display: flex;
+            flex-direction: column;
+            
+
+        }
+
+    }
+    
+
+// ==============================
+// contuct
+// ==============================
+.container-contact{
+    width: 70%;
+    margin: 100px auto;
+    text-align: center;
+    //display: block;
+    border: 1px ;
+    @include mq(){
+        width: 90%;
+    }
+   
+    & .contact-title{
+        font-size: 80px;
+        font-weight: bold;
+        margin-bottom: 30px;
+    }
+    & .form{
+        display: block;
+    }
+    & .input{
+        display: block;
+        margin: 0 auto;
+        width: 60%;
+        height: 60px;
+        margin-top: 16px;
+        border-radius: 4px;
+        @include mq(){
+            width: 100%;
+        }
+    }
+    & .input-textarea{
+        height: 300px;
+        border-radius: 4px;
+        overflow: scroll;
+        display: block;
+        @include mq(){
+            width: 100%;
+        }
+    }
+    & .submit{
+        width: 60%;
+        background:  #ffecd4;
+        height: 40px;
+        display: inline-block;
+        margin-top: 16px;
+        font-size: 12px;
+        border-radius: 4px;
+        transition:  all 1s;
+       opacity: 0.7;
+        box-shadow: 3px 3px rgb(240, 236, 236);
+        @include mq(){
+            width: 100%;
+        }
+    }
+    & .submit:hover{
+        cursor: pointer;
+        transition:  all 1s;
+        transform:translate(-10px -3px);
+       
+    }
+}
+
+// ==============================
+// access
+// ==============================
+.container-access{
+    width: 80%;
+    text-align: center;
+    & .access-title{
+        font-size: 80px;
+        font-weight: bold;
+    }
+    & .accessmap{
+        width: 100%;
+        border-radius: 4px;
+    }
+    @include mq(){
+        width: 100%;
+
+    }
+}
+
+
+// footer
+.footer{
+    background: wheat;
+    height: 100px;
+    opacity: 60%;
+    & .footer-title{
+        text-align: center;
+        position: relative;
+        top: 50%;
+      
+
+    }
+}
